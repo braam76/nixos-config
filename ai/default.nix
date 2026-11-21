@@ -1,6 +1,9 @@
-{ self, ... }: {
+{ ... }: {
   flake.nixosModules.ai = { pkgs, ... }: {
-    imports = [ self.nixosModules.pi-code ];
-    environment.systemPackages = [ pkgs.opencode ];
+    environment.systemPackages = with pkgs; [
+      opencode
+      pi-coding-agent
+      herdr
+    ];
   };
 }
