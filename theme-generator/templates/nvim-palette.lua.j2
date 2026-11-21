@@ -11,30 +11,35 @@ M.roles = {
 {% endfor %}
 }
 function M.setup()
-  require("solarized-osaka").setup({
-    style = "vivid",
+  require("vague").setup({
     transparent = true,
-    terminal_colors = true,
-    on_colors = function(colors)
-      -- Override AFTER the plugin computes vivid colors; JSON is authoritative.
-      for key, value in pairs(M.palette) do colors[key] = value end
-      colors.bg = M.roles.background
-      colors.fg = M.roles.foreground
-      colors.bg_highlight = M.roles.surface
-      colors.border = M.roles.border
-      colors.bg_popup = M.roles.background
-      colors.bg_statusline = M.roles.surface
-      colors.bg_sidebar = M.roles.background
-      colors.bg_float = M.roles.background
-      colors.fg_float = M.roles.foreground
-      colors.error = M.roles.error
-      colors.warning = M.roles.warning
-      colors.info = M.roles.accent
-      colors.hint = M.palette.cyan
-      colors.todo = M.palette.violet
-    end,
+    colors = {
+      bg = M.roles.background,
+      inactiveBg = M.palette.shadow,
+      fg = M.roles.foreground,
+      floatBorder = M.roles.border,
+      line = M.roles.surface,
+      comment = M.roles.muted,
+      builtin = M.palette.aqua,
+      func = M.palette.peach,
+      string = M.palette.amber,
+      number = M.palette.gold,
+      property = M.palette.lilac,
+      constant = M.palette.cyan,
+      parameter = M.palette.magenta,
+      visual = M.roles.selection,
+      error = M.roles.error,
+      warning = M.roles.warning,
+      hint = M.palette.iris,
+      operator = M.palette.lavender,
+      keyword = M.roles.accent,
+      type = M.palette.teal,
+      search = M.palette.storm,
+      plus = M.roles.success,
+      delta = M.roles.warning,
+    },
     on_highlights = function(highlights)
-      -- The plugin uses base0 for Normal, not fg; bind UI roles explicitly.
+      -- Keep shared UI roles explicit while preserving plugin syntax coverage.
       for _, group in ipairs({ "Normal", "NormalNC", "NormalFloat", "NormalSB" }) do
         highlights[group] = { fg = M.roles.foreground, bg = "NONE" }
       end
@@ -50,17 +55,21 @@ function M.setup()
       highlights.Visual = { bg = M.roles.selection }
       highlights.StatusLine = { fg = M.roles.bright, bg = M.roles.surface }
       highlights.StatusLineNC = { fg = M.roles.muted, bg = "NONE" }
+      highlights.DiffAdd = { bg = M.palette.diff_add }
+      highlights.DiffChange = { bg = M.palette.diff_change }
+      highlights.DiffDelete = { bg = M.palette.diff_delete }
+      highlights.DiffText = { bg = M.palette.diff_text }
     end,
   })
 end
 function M.apply()
   M.setup()
-  vim.cmd.colorscheme("solarized-osaka-vivid")
+  vim.cmd.colorscheme("vague")
   local ansi = {
-    M.roles.surface, M.roles.error, M.roles.success, M.roles.warning,
-    M.roles.accent, M.palette.magenta, M.palette.cyan, M.roles.bright,
-    M.roles.muted, M.roles.error, M.roles.success, M.roles.warning,
-    M.roles.accent, M.palette.magenta, M.palette.cyan, M.palette.base3,
+    M.palette.graphite, M.palette.red, M.palette.green, M.palette.yellow,
+    M.palette.blue, M.palette.magenta, M.palette.cyan, M.palette.white,
+    M.palette.bright_black, M.palette.bright_red, M.palette.bright_green, M.palette.bright_yellow,
+    M.palette.bright_blue, M.palette.bright_magenta, M.palette.bright_cyan, M.palette.bright_white,
   }
   for index, value in ipairs(ansi) do vim.g["terminal_color_" .. (index - 1)] = value end
 end

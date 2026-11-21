@@ -1,7 +1,7 @@
 gtk-font-name = "JetBrainsMono Nerd Font 12"
 
 # GTK2 cannot use GTK3 CSS; supply its palette using native RC styles.
-style "solarized-osaka" {
+style "vague" {
   fg[NORMAL] = "{{ roles.foreground }}"
   fg[ACTIVE] = "{{ roles.bright }}"
   fg[PRELIGHT] = "{{ roles.bright }}"
@@ -23,4 +23,4 @@ style "solarized-osaka" {
   text[SELECTED] = "{{ roles.background }}"
   text[INSENSITIVE] = "{{ roles.muted }}"
 }
-class "*" style "solarized-osaka"
+class "*" style "vague"

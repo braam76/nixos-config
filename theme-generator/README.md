@@ -1,6 +1,6 @@
 # Shared palette → native themes
 
-One JSON palette, semantic roles, and Jinja templates. No Stylix/Home Manager or
+One Vague palette, semantic roles, and Jinja templates. No Stylix/Home Manager or
 Omarchy runtime is involved. Python + Jinja are provided by the pinned Nix flake.
 
 ## Layout
@@ -10,7 +10,7 @@ theme-generator/
   render.py              # Renderer, CLI and debounced polling watcher
   config.json            # Selected theme, template → output mapping, reload hooks
   themes/
-    solarized-osaka.json # Your complete HSL palette, plus semantic role mappings
+    vague.json           # Upstream Vague colors, ANSI/diff colors and semantic roles
   templates/             # Native program configs with Jinja expressions
   test_render.py         # Unit and watcher integration tests
   pyproject.toml         # Python/Jinja dependency metadata
@@ -88,14 +88,13 @@ trusted local code; do not install unreviewed templates from strangers.
 {
   "name": "Example",
   "palette": {
-    "bg": [192, 100, 5],
-    "fg": "#839495",
-    "blue": [205, 69, 49],
-    "none": "NONE"
+    "black": "#141415",
+    "white": "#cdcdcd",
+    "blue": "#6e94b2"
   },
   "roles": {
-    "background": "bg",
-    "foreground": "fg",
+    "background": "black",
+    "foreground": "white",
     "accent": "blue"
   }
 }
@@ -104,12 +103,16 @@ trusted local code; do not install unreviewed templates from strangers.
 Colors accept `#rrggbb`, `NONE`, or `[hue_degrees, saturation_percent,
 lightness_percent]`. Roles reference palette keys or contain literal colors.
 Roles must resolve to real RGB colors, not `NONE`. There is no Lua evaluation.
-The bundled JSON contains every shade from your supplied Lua table.
+The bundled JSON copies the complete
+[upstream Vague palette](https://github.com/vague-theme/vague/blob/main/palette.json).
+Named colors retain upstream names; ANSI bright/dim colors use `bright_*` and
+`dim_*` keys, and diff backgrounds use `diff_*`. Normal ANSI black is `graphite`,
+not the darker main background `black`.
 
-`palette` contains raw colors; `roles` gives them a shared meaning. Change
-`roles.foreground` from `fg` to `base0`, for example, to brighten normal text
-across applications without editing templates. The supplied palette's `fg`
-(55% lightness) and `base0` (65%) are deliberately different, as in your Lua.
+`palette` contains raw colors; `roles` gives them a shared meaning. Background is
+`black`, foreground is `white`, surfaces are `graphite`, and selections/borders
+are `onyx`. Change `roles.foreground` to `bright_white`, for example, to brighten
+normal text across applications without editing templates.
 
 Select another palette by changing `theme` in `config.json` to a file under
 `themes/`. To fully reuse the existing templates, keep the palette keys/roles they
@@ -154,11 +157,11 @@ Templates cover Alacritty, Neovim's palette, Emacs, btop, tmux, Yazi including i
 TextMate preview theme, Mango, Fuzzel, Mako, Walker, Waybar, Starship, Fish/Zsh,
 GTK 2/3/4, KDE and the saved KDE color scheme. Pi follows the terminal palette.
 
-- **Neovim:** keeps Solarized Osaka's rich plugin highlights, but overwrites all
-  supplied palette keys after the plugin's vivid calculation. Transparency is
-  enabled so the terminal background shows through; completion menus and active
+- **Neovim:** uses `vague-theme/vague.nvim` with syntax/UI colors, diff backgrounds
+  and the full 16-color terminal palette supplied by the shared JSON. Transparency
+  is enabled so the terminal background shows through; completion menus and active
   status lines retain their surfaces. A timer checks the generated Lua file every
-  second and reloads it.
+  second and reloads it. Restart once after switching from the previous plugin.
 - **Emacs:** watches the source theme directory and reloads on changes.
 - **Mango / Mako / Waybar:** reload commands run after changed output is written.
 - **Walker:** its service is stopped after CSS changes; next activation starts
@@ -174,6 +177,9 @@ GTK 2/3/4, KDE and the saved KDE color scheme. Pi follows the terminal palette.
 
 Restart Neovim/Emacs once after installing their new watcher code. No rebuild is
 needed for subsequent palette/template edits.
+
+Existing checkouts must re-run `stow --restow --target="$HOME" home` after rendering
+to link the renamed Vague files. See `../THEME.md` for migration details.
 
 VS Code is deliberately untouched here: there were newer local edits to its
 settings and Nix module. It can be added with a template for the complete settings

@@ -1,43 +1,43 @@
-# Theme: solarized-osaka
-# By: Gemini (adapted from Solarized by Ethan Schoonover and Solarized Osaka by craftzdog)
+# Theme: Vague
+# Palette: https://github.com/vague-theme/vague
 
-# Main bg - Solarized Osaka base03 (slightly brighter than original Solarized base03)
+# Main background
 theme[main_bg]="{{ roles.background }}"
 
-# Main text color - Solarized Osaka base00 (slightly brighter than original Solarized base0)
+# Main text color
 theme[main_fg]="{{ roles.foreground }}"
 
-# Title color for boxes - Solarized Osaka base3 (very light background)
-theme[title]="{{ palette.base3 }}"
+# Title color for boxes
+theme[title]="{{ palette.white }}"
 
-# Highlight color for keyboard shortcuts - Solarized Osaka blue
+# Highlight color for keyboard shortcuts
 theme[hi_fg]="{{ roles.accent }}"
 
-# Background color of selected item in processes box - Solarized Osaka base02
+# Background color of selected item in processes box
 theme[selected_bg]="{{ roles.surface }}"
 
-# Foreground color of selected item in processes box - Solarized Osaka base2
+# Foreground color of selected item in processes box
 theme[selected_fg]="{{ roles.bright }}"
 
-# Color of inactive/disabled text - Solarized Osaka base01
+# Color of inactive/disabled text
 theme[inactive_fg]="{{ roles.muted }}"
 
-# Misc colors for processes box including mini cpu graphs, details memory graph and details status text - Solarized Osaka cyan
+# Misc colors for processes box including mini cpu graphs, details memory graph and details status text
 theme[proc_misc]="{{ palette.cyan }}"
 
-# Cpu box outline color - Solarized Osaka base00
+# Cpu box outline color
 theme[cpu_box]="{{ roles.foreground }}"
 
-# Memory/disks box outline color - Solarized Osaka base00
+# Memory/disks box outline color
 theme[mem_box]="{{ roles.foreground }}"
 
-# Net up/down box outline color - Solarized Osaka base00
+# Net up/down box outline color
 theme[net_box]="{{ roles.foreground }}"
 
-# Processes box outline color - Solarized Osaka base00
+# Processes box outline color
 theme[proc_box]="{{ roles.foreground }}"
 
-# Box divider line and small boxes line color - Solarized Osaka base01
+# Box divider line and small boxes line color
 theme[div_line]="{{ roles.muted }}"
 
 # Temperature graph colors
@@ -47,7 +47,7 @@ theme[temp_end]="{{ roles.error }}"
 
 # CPU graph colors
 theme[cpu_start]="{{ roles.accent }}"
-theme[cpu_mid]="{{ palette.violet }}"
+theme[cpu_mid]="{{ palette.iris }}"
 theme[cpu_end]="{{ palette.magenta }}"
 
 # Mem/Disk free meter
@@ -57,18 +57,18 @@ theme[free_end]="{{ roles.accent }}"
 
 # Mem/Disk cached meter
 theme[cached_start]="{{ roles.warning }}"
-theme[cached_mid]="{{ palette.orange }}"
+theme[cached_mid]="{{ palette.gold }}"
 theme[cached_end]="{{ roles.error }}"
 
 # Mem/Disk available meter
 theme[available_start]="{{ palette.cyan }}"
 theme[available_mid]="{{ roles.accent }}"
-theme[available_end]="{{ palette.violet }}"
+theme[available_end]="{{ palette.iris }}"
 
 # Mem/Disk used meter
 theme[used_start]="{{ roles.error }}"
 theme[used_mid]="{{ palette.magenta }}"
-theme[used_end]="{{ palette.orange }}"
+theme[used_end]="{{ palette.gold }}"
 
 # Download graph colors
 theme[download_start]="{{ roles.accent }}"
@@ -78,4 +78,4 @@ theme[download_end]="{{ roles.success }}"
 # Upload graph colors
 theme[upload_start]="{{ palette.magenta }}"
 theme[upload_mid]="{{ roles.error }}"
-theme[upload_end]="{{ palette.orange }}"
+theme[upload_end]="{{ palette.gold }}"

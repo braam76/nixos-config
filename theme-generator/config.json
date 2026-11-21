@@ -1,25 +1,25 @@
 {
-  "theme": "themes/solarized-osaka.json",
+  "theme": "themes/vague.json",
   "templates": [
     {
-      "template": "config/alacritty/solarized-osaka.toml.j2",
-      "target": ".config/alacritty/solarized-osaka.toml"
+      "template": "config/alacritty/vague.toml.j2",
+      "target": ".config/alacritty/vague.toml"
     },
     {
-      "template": "config/btop/themes/solarized-osaka.theme.j2",
-      "target": ".config/btop/themes/solarized-osaka.theme"
+      "template": "config/btop/themes/vague.theme.j2",
+      "target": ".config/btop/themes/vague.theme"
     },
     {
-      "template": "config/emacs/themes/solarized-osaka-theme.el.j2",
-      "target": ".config/emacs/themes/solarized-osaka-theme.el"
+      "template": "config/emacs/themes/vague-theme.el.j2",
+      "target": ".config/emacs/themes/vague-theme.el"
     },
     {
       "template": "config/fuzzel/fuzzel.ini.j2",
       "target": ".config/fuzzel/fuzzel.ini"
     },
     {
-      "template": "config/gtk-3.0/solarized-osaka.css.j2",
-      "target": ".config/gtk-3.0/solarized-osaka.css"
+      "template": "config/gtk-3.0/vague.css.j2",
+      "target": ".config/gtk-3.0/vague.css"
     },
     {
       "template": "config/gtk-4.0/gtk.css.j2",
@@ -59,12 +59,12 @@
       "target": ".config/starship.toml"
     },
     {
-      "template": "config/fish/conf.d/solarized-osaka.fish.j2",
-      "target": ".config/fish/conf.d/solarized-osaka.fish"
+      "template": "config/fish/conf.d/vague.fish.j2",
+      "target": ".config/fish/conf.d/vague.fish"
     },
     {
-      "template": "config/tmux/solarized-osaka.conf.j2",
-      "target": ".config/tmux/solarized-osaka.conf",
+      "template": "config/tmux/vague.conf.j2",
+      "target": ".config/tmux/vague.conf",
       "reload": [
         [
           "tmux",
@@ -101,12 +101,12 @@
       "target": ".config/yazi/theme.toml"
     },
     {
-      "template": "config/yazi/solarized-osaka.tmTheme.j2",
-      "target": ".config/yazi/solarized-osaka.tmTheme"
+      "template": "config/yazi/vague.tmTheme.j2",
+      "target": ".config/yazi/vague.tmTheme"
     },
     {
-      "template": "local/share/color-schemes/SolarizedOsaka.colors.j2",
-      "target": ".local/share/color-schemes/SolarizedOsaka.colors"
+      "template": "local/share/color-schemes/Vague.colors.j2",
+      "target": ".local/share/color-schemes/Vague.colors"
     },
     {
       "template": "gtkrc-2.0.j2",

@@ -1,8 +1,8 @@
 # Shared theme
 
-The source of truth is now **`theme-generator/themes/solarized-osaka.json`**, not
-independent per-program Solarized Osaka ports. It contains the complete HSL
-palette supplied from Solarized Osaka's Lua table, plus shared semantic roles.
+The source of truth is **`theme-generator/themes/vague.json`**, using the complete
+[upstream Vague palette](https://github.com/vague-theme/vague/blob/main/palette.json),
+including ANSI bright/dim and diff colors, plus shared semantic roles.
 
 Read **[theme-generator/README.md](theme-generator/README.md)** for the Python/Jinja
 environment, service setup, template syntax, app coverage and reload limitations.
@@ -25,9 +25,9 @@ on restart; the generator never kills your editors or desktop applications.
 Edit templates rather than generated files. Layout/config files not owned by a
 template remain directly editable.
 
-Neovim still uses the Solarized Osaka plugin for highlight coverage, but the
-shared JSON overrides its palette after vivid processing. This prevents the
-plugin and terminal from independently choosing different RGB values.
+Neovim uses the Vague plugin for highlight coverage. The shared JSON supplies its
+syntax and UI colors, diff backgrounds, and terminal ANSI palette. Transparency
+remains enabled; menus and active status lines retain opaque surfaces.
 
 VS Code remains excluded to preserve its newer local configuration. Pi uses its
 terminal-adaptive `system` theme, including Pi's own contrast adjustments.
@@ -44,10 +44,16 @@ system decorations may also affect VS Code even though its settings are untouche
 Fonts, color management and app-specific shading can still affect perception;
 sharing a palette does not make different rendering engines pixel-identical.
 
-## Earlier theme source
+## Switching an existing checkout
 
-The initial static adaptations used
-https://github.com/motorsss/omarchy-solarizedosaka-theme at revision
-`4cb12e9d4321f76dd7b7fdbb22c93a4d5633be95`. Layout and role mappings were retained
-as the basis for the templates, but the original port's independent RGB values
-are no longer authoritative. Its wallpaper was not installed.
+The generated theme filenames now use `vague` (`Vague.colors` for KDE). Re-run
+Stow after rendering to replace old deployment links and link the new files:
+
+```sh
+theme-render
+stow --restow --target="$HOME" home
+```
+
+Restart Neovim once to install/load `vague-theme/vague.nvim`; its palette watcher
+handles subsequent edits. Restart other apps or relogin where live reload is not
+supported. VS Code's independently selected theme is intentionally unchanged.
