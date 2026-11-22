@@ -26,10 +26,9 @@ edit those settings in the template.
 
 ## Python environment and manual use
 
-From the repository root, track the new Nix module first (a commit is not required):
+From the repository root:
 
 ```sh
-git add theme-generator.nix
 nix develop .#theme-generator
 python theme-generator/render.py --check   # preview; exit 1 means changes pending
 python theme-generator/render.py           # render without reloading apps
@@ -52,8 +51,6 @@ Do not combine scratch output with `--reload`: hooks address your running apps.
 The NixOS module is imported by the desktop module. Enable/install it with:
 
 ```sh
-# Git-backed flakes need new files tracked before a normal .# rebuild.
-git add theme-generator.nix theme-generator
 sudo nixos-rebuild switch --flake . --impure
 systemctl --user enable --now theme-generator.service
 journalctl --user -u theme-generator.service -f
@@ -62,7 +59,7 @@ journalctl --user -u theme-generator.service -f
 Use the Git-backed flake rather than a whole-directory `path:` input, so ignored
 private/runtime files are not accidentally included in a Nix-store snapshot.
 The service is restricted to user `braam` and uses the live checkout at
-`/home/braam/dotfiles/theme-generator`; adjust `theme-generator.nix` if the
+`/home/braam/dotfiles/theme-generator`; adjust `nix/theme-generator.nix` if the
 checkout moves. There is also an installed `theme-render` command.
 
 The watcher polls input content every 0.5 seconds, waits for one stable interval,

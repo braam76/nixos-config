@@ -46,16 +46,18 @@ generated outputs; other configs remain directly editable.
 
 ```text
 flake.nix / flake.lock       # Nix inputs and pinned versions
-parts.nix                   # Supported systems
-hosts/                      # Hardware import, bootloader and host assembly
-users/                      # User account and login shell
-system/                     # Audio, fonts, networking, locale, printing, Nix
-desktop/                    # Desktop/session packages and service integration
-cli-tools/                  # Shells and CLI packages
-development/                # Editors, languages, containers and virtual machines
-vpn/                        # VPN integration
-ai/                         # AI packages
-theme-generator.nix         # Theme renderer package, dev shell and user service
+nix/                        # Auto-imported flake-parts modules
+  parts.nix                 # Supported systems
+  hosts/                    # Hardware import, bootloader and host assembly
+  users/                    # User account and login shell
+  system/                   # Audio, fonts, networking, locale, printing, Nix
+  desktop/                  # Desktop/session packages and service integration
+  cli-tools/                # Shells and CLI packages
+  development/              # Editors, languages, containers and virtual machines
+  games/                    # Games
+  vpn/                      # VPN integration
+  ai/                       # AI packages
+  theme-generator.nix       # Theme renderer package, dev shell and user service
 home/
   .config/
     alacritty/              # Terminal settings, font and colors
@@ -84,6 +86,11 @@ home/
   .gtkrc-2.0                # GTK2 font settings
   .zshrc                    # Zsh initialization, aliases and integrations
 ```
+
+`import-tree` recursively discovers modules under `nix/`. Add new module files
+to Git so the flake can see them; no edit to `flake.nix` is needed. Discovery
+does not enable a NixOS module: include it in the appropriate host or module's
+imports. Keep standalone Nix expressions outside `nix/`.
 
 Nix still packages `screenshot`, `clipboard-daemon` and `clipboard-history` with
 their runtime dependencies. Mako's D-Bus activation comes from its installed

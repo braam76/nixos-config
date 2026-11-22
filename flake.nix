@@ -21,19 +21,6 @@
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; }
       {
-        imports = [
-          ./parts.nix
-          ./theme-generator.nix
-        ] ++ map inputs.import-tree [
-          ./ai
-          ./cli-tools
-          ./desktop
-          ./development
-          ./games
-          ./hosts
-          ./system
-          ./users
-          ./vpn
-        ];
+        imports = [ (inputs.import-tree ./nix) ];
       };
 }
