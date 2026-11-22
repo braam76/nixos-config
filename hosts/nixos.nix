@@ -1,20 +1,20 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosConfigurations.nixos = 
-    inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = with self.nixosModules; [
-        hostConfiguration
-        base
-        desktop
-        development
-        cli-tools
-        ai
-        vpn
-        braam
-      ];
-    };
+  flake.nixosConfigurations.nixos = inputs.nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = with self.nixosModules; [
+      hostConfiguration
+      base
+      desktop
+      development
+      cli-tools
+      ai
+      vpn
+      braam
+      games
+    ];
+  };
 
   flake.nixosModules.hostConfiguration = {
     imports = [ /etc/nixos/hardware-configuration.nix ];

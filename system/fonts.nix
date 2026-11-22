@@ -5,12 +5,12 @@
     options.dotfiles.font = {
       name = lib.mkOption {
         type = lib.types.str;
-        default = "JetBrainsMono Nerd Font";
+        default = "Iosevka Nerd Font";
         description = "Shared font family for desktop applications and editors.";
       };
       package = lib.mkOption {
         type = lib.types.package;
-        default = pkgs.nerd-fonts.jetbrains-mono;
+        default = pkgs.nerd-fonts.iosevka;
         description = "Package providing the shared font family.";
       };
       size = lib.mkOption {

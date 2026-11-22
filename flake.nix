@@ -29,6 +29,7 @@
           ./cli-tools
           ./desktop
           ./development
+          ./games
           ./hosts
           ./system
           ./users

@@ -27,6 +27,13 @@ snr-update  # sudo nixos-rebuild switch --flake ~/dotfiles --impure --update
 If Stow reports conflicts, back up the existing files before retrying. GTK/KDE
 apps may rewrite some settings; review `git diff` before committing.
 
+## Pi hashline editing
+
+Pi's user settings pin [pi-hashline-edit](https://github.com/RimuruW/pi-hashline-edit),
+an Oh My Pi–inspired replacement for `read` and `edit`. After Stow, start Pi
+online (or run `/reload`) to install it. Text reads include `LINE#HASH` anchors
+that edits can reference. No NixOS rebuild is needed.
+
 ## Theme
 
 Application colors come from one JSON palette and Jinja templates in
@@ -89,6 +96,22 @@ In Neovim, use `<leader>lf` to format the current buffer. StyLua uses the
 project's `stylua.toml` or `.stylua.toml` if present, otherwise it falls back to
 `~/.config/stylua/stylua.toml`. On the command line, use `stylua -s file.lua` to
 use the same config lookup.
+
+## Vue, TypeScript, and Nuxt in Neovim
+
+Start Neovim from a shell that already has `vtsls` on `PATH` for TypeScript and
+JavaScript. Vue single-file components also need `vue-language-server` on
+`PATH`. Neovim detects the Vue package behind standard npm symlinks and project
+`node_modules/.bin` shims. For other wrappers, set `VUE_LANGUAGE_SERVER_PATH`
+to the absolute path to the `@vue/language-server` package directory, not its
+binary. Nothing is installed by this configuration.
+
+Nuxt uses the same Vue and TypeScript servers. If generated Nuxt types or `~/`
+aliases are missing, run your project's `nuxt prepare` command to refresh `.nuxt`.
+Use `:LspInfo` to check that both servers attach to a `.vue` buffer.
+
+Formatting uses tools you already have: `oxfmt` or Prettier for TypeScript and
+JavaScript, and Prettier for Vue.
 
 ## Mango
 
