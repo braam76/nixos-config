@@ -34,6 +34,10 @@
       "target": ".config/kdeglobals"
     },
     {
+      "template": "config/kitty/vague.conf.j2",
+      "target": ".config/kitty/vague.conf"
+    },
+    {
       "template": "config/mako/config.j2",
       "target": ".config/mako/config",
       "reload": [
